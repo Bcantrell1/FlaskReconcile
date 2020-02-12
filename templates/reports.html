@@ -3,16 +3,22 @@
 <title>Reconcile| Reports | Automatit</title>
 {% endblock %}
 {% block body %}
-<div class="col">
-    <h3 class="display-5 font-weight-normal text-center">Upload a file for reporting</h3>
+<div class="position-relative overflow-hidden p-2 p-md-5 m-md-3 text-center bg-light">
+    <h3 class="display-5 font-weight-normal text-center">Click to view the current Report</h3>
+    <p class="lead font-weight-small">(MasterReport.csv)</p>
         <br>
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
         <a class="btn btn-outline-secondary text-center " href="/view-report">View Report</a>
         </div>
         <br><br>
-        <strong>Current Files: </strong><br>
-        {{report}}
+        <h3 class="display-6 font-weight-normal text-center">Current Files: </h3><br>
+        <select class="selectpicker form-control" name="delete_file">
+            {% for x in list_files %}
+            <option value="{{x}}"  SELECTED > {{x}}</option>
+            {% endfor %}
+        </select>
         <br><br>
+        <p class="lead font-weight-small">To download files use /get-file/<\file_name></p>
         {{reportOutput}}
 </div>
 {% endblock %}

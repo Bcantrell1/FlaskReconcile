@@ -15,18 +15,24 @@ def index():
 #Reconcile
 @app.route('/reconcile')
 def reconcile():
+    files = os.listdir(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/")
+    file_list = [p for p in files]
     path = os.path.abspath(os.path.dirname(__file__))+"/static/client/csv"
     # path = os.getcwd()+"/static/client/csv"
     list_of_files = {}
     for filename in os.listdir(path):
         list_of_files[filename] = filename
-    return render_template('reconcile.html', report = list_of_files)
+    return render_template('reconcile.html', report = list_of_files, list_files=file_list)
 
 #Upload file web display
 @app.route('/upload_file')
 def upload():
-    return render_template('upload_file.html')
-
+    try:
+        files = os.listdir(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/")
+        file_list = [p for p in files]
+        return render_template('upload_file.html', list_files=file_list)
+    except Exception as e:
+        return(str(e))
 
 #Show contents of report file.    
 @app.route('/view-report')
@@ -40,12 +46,14 @@ def create_report():
 #Show report page
 @app.route('/reports')
 def report():
+    files = os.listdir(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/")
+    file_list = [p for p in files]
     path = os.path.abspath(os.path.dirname(__file__))+"/static/client/csv"
     # path = os.getcwd()+"/static/client/csv"
     list_of_files = {}
     for filename in os.listdir(path):
         list_of_files[filename] = filename
-    return render_template('reports.html', report = list_of_files)
+    return render_template('reports.html', report = list_of_files, list_files=file_list)
 
 #Upload File logic
 app.config['FILE_UPLOAD'] = os.path.abspath(os.path.dirname(__file__))+"/static/client/csv"
@@ -62,9 +70,9 @@ def upload_file():
 #Delete File logic
 @app.route('/clear-file', methods=["GET", "POST"])
 def clear_file():
-    filename = request.files['deletefile']
+    filename = request.form['delete_file']
     try:
-        os.unlink(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/"+filename)
+        os.remove(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/"+str(filename))
         return render_template('/upload_file.html')
     except Exception as e:
         return(str(e))
