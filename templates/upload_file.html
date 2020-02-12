@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Reconcile | Automatit</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="col">
+    <h3 class="display-5 font-weight-normal text-center">Upload a file for reporting</h3>
+        <form action="/upload-file" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label> Select the File: </label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="image" id="image">
+                    <label class="custom-file-label" for="image">Select file..</label>
+
+                </div>
+            </div>
+        <button type="submit" class="btn btn-primary" >Upload</button>
+        <!-- </form>
+        <br><br>
+        <form action="/clear-file" method="post">
+            <div class="form-group">
+                <label> What file: </label>
+                <div class="custom-file">
+                    <input type="text" class="form-control" name="deletefile" id="deletefile">
+                </div>
+            </div>
+        <button type="submit" class="btn btn-primary" >Clear</button>
+        </form> -->
+</div>
+{% endblock %}
