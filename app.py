@@ -7,6 +7,8 @@ import csv
 
 app = Flask(__name__)
 
+
+
 #Home Page
 @app.route('/')
 def index():
@@ -35,11 +37,22 @@ def upload():
         return(str(e))
 
 #Show contents of report file.    
+# @app.route('/view-report')
+# def create_report():
+#     try:
+#         table = pd.read_csv(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/MasterReport.csv",header=None, sep='\n')
+#         return table.to_html()
+#     except Exception as e:
+#         return(str(e))
+#}
+
+
+#Show contents of report file.    
 @app.route('/view-report')
 def create_report():
     try:
-        table = pd.read_csv(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/MasterReport.csv",header=None, sep='\n')
-        return table.to_html()
+        table = pd.read_csv(os.path.abspath(os.path.dirname(__file__))+"/static/client/csv/MasterReport.csv", header=None, sep=',', dtype=str, error_bad_lines=False, quoting=csv.QUOTE_NONE)
+        return render_template('report.html', table=table)
     except Exception as e:
         return(str(e))
 
@@ -175,7 +188,8 @@ def run_script():
 
 
     with open(masterFile, 'w', newline='', errors='ignore') as f:
-        w = csv.writer(f)
+        w = csv.writer(f) 
+        w.writerow(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55'])
         w.writerow(['A Alpha Mini Storage'])
         w.writerow(['Reservations', str(mosaicCount)])
         w.writerow(['Sitelink Leases', str(sitelinkCount)])
@@ -186,12 +200,10 @@ def run_script():
         w.writerow(['Reservation to Phone Call Conv Rate', str(percentage_change(matchMarchexCount, mosaicCount)) + '%'])
         w.writerow(['Reservation to Sitelink Move Ins', str(number_of_MSMI)])
         w.writerow(['Reservation to Site Link Move In Conv Rate', str(percentage_change(number_of_MSMI, mosaicCount)) + '%'])
-        w.writerow([])
-        w.writerow([])
         w.writerow(["Algortihm data points (Sitelink Move Ins in Mosaic Reservations)"])
         w.writerows(data_points)
 
         return render_template('/reports.html')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=True)

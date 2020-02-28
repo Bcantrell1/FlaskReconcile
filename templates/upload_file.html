@@ -8,24 +8,24 @@
 {% block body %}
 <div class="position-relative overflow-hidden p-2 p-md-5 m-md-3 text-center bg-light">
     <h3 class="display-5 font-weight-normal text-center">Upload a file for reporting</h3>
-        <form action="/upload-file" method="post" enctype="multipart/form-data">
-            <div class="form-group"><br>
-                <h3 class="display-6 font-weight-normal text-center"> Select the File: </h3>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="image" id="image">
-                    <label class="custom-file-label" for="image">Select file..</label>
-                </div>
+    <form action="/upload-file" method="post" enctype="multipart/form-data">
+        <div class="form-group"><br>
+            <h3 class="display-6 font-weight-normal text-center"> Select the File: </h3>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="image" id="image">
+                <label class="custom-file-label" for="image">Select file..</label>
             </div>
-        <button type="submit" class="btn btn-primary" >Upload</button>
-        </form>
-        <br><br>
-        <form action="/clear-file" method="post">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+    <br><br>
+    <form action="/clear-file" method="post">
         <select class="selectpicker form-control" name="delete_file">
             {% for x in list_files %}
-            <option value="{{x}}"  SELECTED > {{x}}</option>
+            <option value="{{x}}" SELECTED> {{x}}</option>
             {% endfor %}
         </select>
-        <button type="submit" class="btn btn-primary" >Clear</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Clear</button>
+    </form>
 </div>
 {% endblock %}

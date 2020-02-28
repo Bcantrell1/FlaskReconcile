@@ -6,22 +6,22 @@
 
 {% block body %}
 <div class="position-relative overflow-hidden p-2 p-md-5 m-md-3 text-center bg-light">
-    <h3 class="display-5 font-weight-normal text-center">Reconcile Current Files</h3>
+  <h3 class="display-5 font-weight-normal text-center">Reconcile Current Files</h3>
   <form action="/run-script" method="post" enctype="multipart/form-data">
-<div class="form-group">
-<div class="custom-file"><br>
-  <button type="submit" class="btn btn-outline-secondary text-center " >Reconcile Files</button>
+    <div class="form-group">
+      <div class="custom-file"><br>
+        <button type="submit" class="btn btn-outline-secondary text-center ">Reconcile Files</button>
+      </div>
+    </div>
+  </form>
 </div>
-</div>
-</form>
-</div>
-<h3 class="display-6 font-weight-normal text-center">Current files</h3> 
-  <select class="selectpicker form-control" name="delete_file">
-      {% for x in list_files %}
-      <option value="{{x}}"  SELECTED > {{x}}</option>
-      {% endfor %}
-  </select>
+<h3 class="display-6 font-weight-normal text-center">Current files</h3>
+<select class="selectpicker form-control" name="delete_file">
+  {% for x in list_files %}
+  <option value="{{x}}" SELECTED> {{x}}</option>
+  {% endfor %}
+</select>
 
-    
-  
+
+
 {% endblock %}

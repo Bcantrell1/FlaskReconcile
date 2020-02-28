@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Reconcile | Report | Automatit</title>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="col text-center">
+    <h1 class="display-5 font-weight-normal">{{ table.iloc[1][0] }}</h1>
+</div>
+<hr>
+<hr>
+<br>
+<div class="container-md">
+    <div class="row">
+        <div class="col ml-auto">
+            <div class="card text-center bg-secondary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[2][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[2][1] }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col ml-auto">
+            <div class="card text-center bg-secondary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[3][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[3][1] }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col ml-auto">
+            <div class="card text-center bg-secondary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[4][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[4][1] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col ml-auto">
+            <div class="card text-center bg-secondary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[9][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[9][1] }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col ml-auto">
+            <div class="card text-center bg-secondary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[6][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[6][1] }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col ml-auto">
+            <div class="card text-center bg-secondary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[7][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[7][1] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col ml-auto">
+            <div class="card text-center bg-primary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[8][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[8][1] }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col ml-auto">
+            <div class="card text-center bg-primary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[5][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[5][1] }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col ml-auto">
+            <div class="card text-center bg-primary" style="width: 18rem; height: 7rem;">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ table.iloc[10][0] }}</h5>
+                    <p class="card-text">{{ table.iloc[10][1] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+<br>
+<hr>
+
+<div class="col text-center">
+    <h3 class="display-5 font-weight-normal">Data Points</h3>
+</div>
+<hr>
+<br>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Size</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for i, j in table[12:].iterrows()%}
+        <tr>
+            <th scope="row">{{i-11}}</th>
+            <td scope="row">{{j.iloc[7].replace('"','')}}</td>
+            <td scope="row">{{j.iloc[6].replace('"','')}}</td>
+            <td scope="row">{{j.iloc[41]}}</td>
+            <td scope="row">{{j.iloc[11]}}</td>
+        </tr>
+        {% endfor%}
+    </tbody>
+
+</table>
+
+{% endblock %}
